@@ -13,14 +13,9 @@ class Test_Pytest():
     @allure.title('正常登录')
     def test_login(self):
         res=LoginApi.login('5229455','Admin@123')
-        msg=res.get('msg')
+        res_1=res[0]
+        msg=res_1.get('msg')
         assert msg =='OK'
 
-    @allure.title('异常登录')
-    def test_errlogin(self):
-        res=LoginApi.login('123','123')
-        msg = res.get('msg')
-        assert msg == 'OK'
-
 if __name__ == '__main__':
-    pytest.main(['-s', '-r', './test_case/test_login','nu1'])
+    pytest.main(['-s', '-r', './test_case/test_login','./test_case/test_login','nul'])

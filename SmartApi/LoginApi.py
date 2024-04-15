@@ -20,10 +20,12 @@ def login(userAccount,password):
         "userAccount": userAccount,
         "password": password
     })
+    login_headers={'Content-Type': 'application/json'}
     login_url = "http://" + config.setuip() +'/smartSecurityAPI/userLogin/login'
-    res=requests.post(url=login_url, headers=config.setloginheaders(), data=payload).json()
-    print(res)
-    return res
+    res=requests.post(url=login_url, headers=login_headers, data=payload).json()
+    token=res.get('result').get('token')
+    guestCode=res.get('result').get('user').get('guestCode')
+    headers = {'Content-Type': 'application/json','token':token,'guestCode':guestCode}
+    return res,headers
 
-if __name__ == '__main__':
-    login('5229455','Admin@123')
+
