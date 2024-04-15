@@ -9,4 +9,3 @@ def getuserinfo():
     res=LoginApi.login('5229455','Admin@123')
     headers=res[1]
     return headers
-
